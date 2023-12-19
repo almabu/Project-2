@@ -7,7 +7,6 @@ router.post('/', async (req, res) => {
   const { title, statusId, assignedToId } = req.body;
 
   try {
-    // Check if the User with the specified assignedToId exists
     const userExists = await prisma.user.findUnique({
       where: { id: assignedToId },
     });
@@ -16,7 +15,6 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Specified User does not exist.' });
     }
 
-    // Create the task
     const createdTask = await prisma.task.create({
       data: {
         title,

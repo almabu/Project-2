@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     res.json(statuses);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Ka ndodhur një gabim gjatë marrjes së statuseve.' });
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

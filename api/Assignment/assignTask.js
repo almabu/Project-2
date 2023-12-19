@@ -3,12 +3,11 @@ const { PrismaClient } = require('@prisma/client');
 const router = express.Router();
 const prisma = new PrismaClient();
 
-// Assign Task to User
+
 router.post('/', async (req, res) => {
   const { taskId, assignedToId } = req.body;
 
   try {
-    // Check if the task and user exist
     const task = await prisma.task.findUnique({
       where: { id: taskId },
     });
@@ -21,7 +20,6 @@ router.post('/', async (req, res) => {
       return res.status(404).json({ error: 'Task or User not found' });
     }
 
-    // Assign the task to the user
     const assignedTask = await prisma.task.update({
       where: { id: taskId },
       data: { assignedToId },
